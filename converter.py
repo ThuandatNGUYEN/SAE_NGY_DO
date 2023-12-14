@@ -1,7 +1,5 @@
 import csv
-
 from icalendar import Calendar
-
 
 def ics_to_csv(ics_file, csv_file):
     with open(ics_file, 'rb') as ics_file:
