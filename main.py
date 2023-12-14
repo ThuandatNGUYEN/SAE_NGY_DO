@@ -29,6 +29,10 @@ def calc_heures(debut, fin):
     return difference.total_seconds() / 3600
 
 
+def get_list_from_str(stlist):
+    return stlist.replace('[', '').replace(']', '').replace("'", '').split(',')
+
+
 def get_type_from_room(room):
     if "Amphi" in room:
         return "CM"
@@ -54,6 +58,7 @@ mat_dict = {"CM": 0, "TD": 0, "TP": 0}
 for element in donnees:
     if element[4] == enseignant and element[0] == module:
         mat_dict[get_type_from_room(element[5])] += calc_heures(element[1], element[2])
+        print(get_list_from_str(element[3]))
 
 values = [mat_dict[label] for label in labels]
 plt.figure(figsize=(7, 5))
