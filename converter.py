@@ -1,5 +1,7 @@
 import csv
+
 from icalendar import Calendar
+
 
 def ics_to_csv(ics_file, csv_file):
     with open(ics_file, 'rb') as ics_file:
@@ -15,23 +17,18 @@ def ics_to_csv(ics_file, csv_file):
 
             # Iteration du calendrier
             for event in cal.walk('VEVENT'):
-                summary = event.get('summary')
-                start_time = event.get('dtstart').dt
-                end_time = event.get('dtend').dt
-                description = event.get('description')
-                location = event.get('location')
+                # Extraction des informations
+                summary = str(event.get('summary')).replace('\n', ',')
+                description = str(event.get('description')).replace('\n', ',')
+                location = str(event.get('location')).replace('\n', ',')
 
-                summary = str(summary).replace('\n', ',')
-                description = str(description).replace('\n', ',')
-                location = str(location).replace('\n', ',')
-                desc = description.split(',')
-                desc = [item for item in desc if "Exported" not in item and item != ""]
-                prof = ""
-                if len(desc) > 1:
-                    prof = desc[len(desc) - 1]
+                # Traitement de la description
+                desc = [item.strip() for item in description.split(',') if "Exported" not in item and item != ""]
+                prof = desc[-1] if len(desc) > 1 and desc[-1][:2] != "RT" else ""
+                desc = desc[:-1] if prof else desc
+
                 # Écriture des données
-                writer.writerow([summary, start_time, end_time, desc[:-1], prof, location])
-
+                writer.writerow([summary, event.get('dtstart').dt, event.get('dtend').dt, desc, prof, location])
 
 
 ics_to_csv("ADECal.ics", "ADECal.csv")
