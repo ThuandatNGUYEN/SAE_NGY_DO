@@ -108,8 +108,8 @@ repertoire = "tableaux générés"
 if not os.path.exists(repertoire):
     os.makedirs(repertoire)
 
-csv_path = os.path.join(repertoire, f"{enseignant} - {module}.csv")
-xlsx_path = os.path.join(repertoire, f"{enseignant} - {module}.xlsx")
+csv_path = os.path.join(repertoire, f"{enseignant} - {module.replace(':', '')}.csv")
+xlsx_path = os.path.join(repertoire, f"{enseignant} - {module.replace(':', '')}.xlsx")
 
 wb = Workbook()
 ws = wb.active

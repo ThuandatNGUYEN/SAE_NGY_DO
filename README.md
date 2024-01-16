@@ -31,5 +31,3 @@ Suivez les instructions à l'écran pour sélectionner les statistiques que vous
 L'histogramme des heures de cours sera affiché, et deux fichiers seront générés dans un répertoire appelé "tableaux générés":
         Enseignant - Module.csv: Tableau CSV avec les heures, types de cours, salles et groupes associés.
         Enseignant - Module.xlsx: Tableau Excel (xlsx) avec les mêmes informations que le fichier CSV.
-
-# À venir.
