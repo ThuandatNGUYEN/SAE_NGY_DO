@@ -113,7 +113,7 @@ xlsx_path = os.path.join(repertoire, f"{enseignant} - {module.replace(':', '')}.
 
 wb = Workbook()
 ws = wb.active
-ws.append(['Heure', 'Type', 'Salle', 'Groupe'])
+ws.append(['Heure(s)', 'Type', 'Salle', 'Groupe'])
 with open(csv_path, 'w', newline='', encoding='utf-8') as csv_file:
     csv_writer = csv.writer(csv_file)
     csv_writer.writerow(['Heure', 'Type', 'Salle', 'Groupe'])
